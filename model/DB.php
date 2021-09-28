@@ -6,7 +6,9 @@ class DB
 
     public static function getPDO()
     {
-        self::$instancePDO = new PDO('mysql:host=localhost;dbname=teamBuilder', 'root', 'root');
+        $db = new PDO('mysql:host=localhost;dbname=teambuilder', 'root', 'root');
+        self::$instancePDO = $db;
+        return $db;
     }
 
     public static function selectMany($var, $key)
@@ -19,15 +21,22 @@ class DB
     public static function selectOne($var, $key)
     {
         $statement = self::$instancePDO->prepare($var);
-
         $statement->execute($key);
 
-        return $statement->fetchColumn(PDO::FETCH_ASSOC);;
+        $result = $statement->fetchAll();
+        return $result;
+        // $statement = self::$instancePDO->prepare($var);
+
+        // $statement->execute($key);
+
+        // return $statement->fetchColumn(PDO::FETCH_ASSOC);
     }
     public static function insert($var, $key)
     {
-        $statement = self::$instancePDO->prepare($var);
-        return $statement->execute($key);
+        $db = self::getPDO();
+        $statement = $db->prepare($var);
+        $statement->execute($key);
+        return $db->lastInsertId();
     }
     public static function execute($var, $key)
     {
