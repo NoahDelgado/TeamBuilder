@@ -1,13 +1,18 @@
 <?php
-require_once('config.php');
 
+
+namespace Teambuilder\model;
+
+use PDO;
+
+require_once('config.php');
 class DB
 {
     private static $instancePDO;
 
     public static function getPDO()
     {
-        $db = new PDO('mysql:host=localhost;dbname=teambuilder', 'root', 'root');
+        $db = new PDO('mysql:host=' . HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASSWORD);
         self::$instancePDO = $db;
         return $db;
     }

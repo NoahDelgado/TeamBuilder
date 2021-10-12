@@ -10,6 +10,8 @@ class HomeController
 {
     public function index()
     {
-        Render::render('Home');
+        $members = Member::all();
+
+        Render::render('MembersTeamList', ['members' => $members]);
     }
 }
