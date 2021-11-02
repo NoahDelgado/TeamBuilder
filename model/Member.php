@@ -52,6 +52,16 @@ class Member
 
         return $res;
     }
+    static function SelectByRole(int $roleid): array
+    {
+        $res = [];
+
+        foreach (DB::selectMany("SELECT * FROM members where role_id = " . $roleid . " ORDER BY members.name ASC", []) as $index) {
+            $res[] = self::make(['id' => $index['id'], 'name' => $index['name'], 'role_id' => $index['role_id']]);
+        }
+
+        return $res;
+    }
 
     static function find(int $id): ?Member
     {
