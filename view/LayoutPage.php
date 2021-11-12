@@ -16,6 +16,12 @@
             </div>
         </section>
     </header>
+    <div class="container">
+        <h1>Teambuilder</h1>
+        <p>Utilisateur connecté:
+            <a href="?controller=userprofil&task=index"> <?= $_SESSION['userLog']->name ?></a>
+        </p>
+    </div>
     <?= $pageContent ?>
 </body>
 

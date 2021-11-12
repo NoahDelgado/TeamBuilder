@@ -100,11 +100,46 @@ class Member
             return false;
         }
     }
-
+    public function role()
+    {
+        $res = [];
+        $res = DB::selectOne("SELECT roles.id, roles.name, roles.slug FROM roles INNER JOIN members ON members.role_id = roles.id WHERE members.id = :id ", ['id' => $this->id]);
+        $res = $res[0];
+        return Role::make(['id' => $res['id'], 'name' => $res['name'], 'slug' => $res['slug']]);
+    }
+    public function statu()
+    {
+        $res = [];
+        $res = DB::selectOne("SELECT status.id, status.name FROM status INNER JOIN members ON members.status_id = status.id WHERE members.id = :id ", ['id' => $this->id]);
+        $res = $res[0];
+        return Status::make(['id' => $res['id'], 'name' => $res['name']]);
+    }
     public function team()
     {
         $res = [];
         $res = DB::selectMany("SELECT teams.id, teams.name, teams.state_id FROM teams INNER JOIN team_member ON team_member.team_id = teams.id WHERE team_member.member_id = :id", ['id' => $this->id]);
+        $teams = [];
+        foreach ($res as $team) {
+            $teams[] = Team::make(['id' => $team['id'], 'name' => $team['name'], 'state_id' => $team['state_id']]);
+        }
+
+        return $teams;
+    }
+    public function modaretedTeam()
+    {
+        $res = [];
+        $res = DB::selectMany("SELECT teams.id, teams.name, teams.state_id FROM teams INNER JOIN team_member ON team_member.team_id = teams.id WHERE team_member.member_id = :id AND team_member.is_captain = 1; ", ['id' => $this->id]);
+        $teams = [];
+        foreach ($res as $team) {
+            $teams[] = Team::make(['id' => $team['id'], 'name' => $team['name'], 'state_id' => $team['state_id']]);
+        }
+
+        return $teams;
+    }
+    public function onlyMemberTeam()
+    {
+        $res = [];
+        $res = DB::selectMany("SELECT teams.id, teams.name, teams.state_id FROM teams INNER JOIN team_member ON team_member.team_id = teams.id WHERE team_member.member_id = :id AND team_member.is_captain = 0; ", ['id' => $this->id]);
         $teams = [];
         foreach ($res as $team) {
             $teams[] = Team::make(['id' => $team['id'], 'name' => $team['name'], 'state_id' => $team['state_id']]);
