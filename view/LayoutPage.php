@@ -11,6 +11,9 @@
 <body>
     <header class="heading">
         <section class="container">
+            <div>
+                Version: Début Examen - Noah
+            </div>
         </section>
     </header>
     <?= $pageContent ?>
