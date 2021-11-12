@@ -22,7 +22,7 @@ class UserProfilController
         $memberTeam = $member->onlyMemberTeam();
         Render::render('Profil', ['member' => $member, 'moderateTeam' => $moderateTeam, 'memberTeam' => $memberTeam]);
     }
-    //TODO: test edit methode
+    //TODO: tester la methode edite
     public function edit()
     {
         $member = Member::find($_POST['id']);
@@ -30,4 +30,5 @@ class UserProfilController
         $memberTeam = $member->onlyMemberTeam();
         Render::render('ProfilEdit', ['member' => $member, 'moderateTeam' => $moderateTeam, 'memberTeam' => $memberTeam]);
     }
+    //TODO: ajouter la methode valider
 }
