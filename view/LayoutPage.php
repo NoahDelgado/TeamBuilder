@@ -12,7 +12,7 @@
     <header class="heading">
         <section class="container">
             <div>
-                Version: Début Examen - Noah
+                Version: Fin Examen - Noah
             </div>
         </section>
     </header>
