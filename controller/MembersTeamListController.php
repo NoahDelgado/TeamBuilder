@@ -14,4 +14,10 @@ class HomeController
 
         Render::render('MembersTeamList', ['members' => $members]);
     }
+    public function moderator()
+    {
+        $members = Member::all();
+
+        Render::render('ModeratorMembersTeamList', ['members' => $members]);
+    }
 }

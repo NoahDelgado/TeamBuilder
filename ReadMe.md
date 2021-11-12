@@ -1,7 +1,7 @@
 # TeamBuilder
 
-## Variable d'environement
-Pour attribuer les variables d'environement il faux crée un ficher config.php dans le dossier model
+## Variable local
+Pour attribuer les variables local il faux crée un ficher config.php dans le dossier model
 ### Utilisteur
 l'utilisateur doit être défini par son ID dans une constante nommé 'USER_ID'
 ### Base de données

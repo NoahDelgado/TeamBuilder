@@ -15,4 +15,11 @@ class UserProfilController
         $memberTeam = $member->onlyMemberTeam();
         Render::render('Profil', ['member' => $member, 'moderateTeam' => $moderateTeam, 'memberTeam' => $memberTeam]);
     }
+    public function moderator()
+    {
+        $member = Member::find($_POST['id']);
+        $moderateTeam = $member->modaretedTeam();
+        $memberTeam = $member->onlyMemberTeam();
+        Render::render('Profil', ['member' => $member, 'moderateTeam' => $moderateTeam, 'memberTeam' => $memberTeam]);
+    }
 }

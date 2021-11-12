@@ -7,7 +7,9 @@
 <?php
 if ($moderateTeam == null && $memberTeam == null) {
 ?>
-    <h1>Inscrit dans aucune équipe </h1>
+    <div class="container">
+        <h1>Inscrit dans aucune équipe </h1>
+    </div>
     <?php
 
 } else {
