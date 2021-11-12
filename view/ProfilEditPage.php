@@ -1,7 +1,9 @@
 <div class="container">
-    <p>Nom : <?= $member->name ?></p>
-    <p>Status : <?= $member->statu()->name ?></p>
-    <p>Role : <?= $member->role()->name ?></p>
+    <form action="?controller=userprofil&task=Validate" accept-charset="UTF-8" method="post">
+        <p>Nom :</p>
+        <input type="text" name="name" value="<?= $member->name ?>" />
+        <p>Status : <?= $member->statu()->name ?></p>
+        <p>Role : <?= $member->role()->name ?></p>
 
 </div>
 <?php
@@ -47,8 +49,8 @@ if ($moderateTeam == null && $memberTeam == null) {
 ?>
 <div class="container">
     <p></p>
-    <form action="?controller=userprofil&task=edit" accept-charset="UTF-8" method="post">
+    <form action="?controller=userprofil&task=Validate" accept-charset="UTF-8" method="post">
         <input type="hidden" name="id" value="<?= $member->id ?>" />
-        <input type="submit" name "send" value="Mode Edition">
+        <input type="submit" name "send" value="Valider">
     </form>
 </div>
