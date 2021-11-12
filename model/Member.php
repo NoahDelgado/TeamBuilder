@@ -11,7 +11,7 @@ class Member
     public  $name;
     public  $password;
     public  $role_id;
-
+    public  $status_id;
     const DEFAULT = USER_ID;
 
 
@@ -23,7 +23,7 @@ class Member
             return false;
         }
 
-        $this->id = DB::insert("INSERT INTO members(id, name,password,role_id) VALUES (:id, :name, :password, :role_id)", ['id' => $this->id, 'name' => $this->name, 'password' => $this->name . "'s_Pa$\$w0rd", 'role_id' => $this->role_id]);
+        $this->id = DB::insert("INSERT INTO members(id, name,password,role_id) VALUES (:id, :name, :password, :role_id)", ['id' => $this->id, 'name' => $this->name, 'password' => $this->name . "'s_Pa$\$w0rd", 'role_id' => $this->role_id, 'status_id' => $this->status_id]);
 
         return true;
     }
@@ -38,7 +38,7 @@ class Member
 
         $member->name = $params['name'];
         $member->role_id = $params['role_id'];
-
+        $member->status_id = $params['status_id'];
         return $member;
     }
 
@@ -47,7 +47,7 @@ class Member
         $res = [];
 
         foreach (DB::selectMany("SELECT * FROM members ORDER BY members.name ASC", []) as $index) {
-            $res[] = self::make(['id' => $index['id'], 'name' => $index['name'], 'role_id' => $index['role_id']]);
+            $res[] = self::make(['id' => $index['id'], 'name' => $index['name'], 'role_id' => $index['role_id'], 'status_id' => $index['status_id']]);
         }
 
         return $res;
@@ -57,7 +57,7 @@ class Member
         $res = [];
 
         foreach (DB::selectMany("SELECT * FROM members where role_id = " . $roleid . " ORDER BY members.name ASC", []) as $index) {
-            $res[] = self::make(['id' => $index['id'], 'name' => $index['name'], 'role_id' => $index['role_id']]);
+            $res[] = self::make(['id' => $index['id'], 'name' => $index['name'], 'role_id' => $index['role_id'], 'status_id' => $index['status_id']]);
         }
 
         return $res;
@@ -72,7 +72,7 @@ class Member
         }
 
         $res = $res[0];
-        return self::make(['id' => $res['id'], 'name' => $res['name'], 'role_id' => $res['role_id']]);
+        return self::make(['id' => $res['id'], 'name' => $res['name'], 'role_id' => $res['role_id'], 'status_id' => $res['status_id']]);
     }
 
     public function save(): bool
@@ -83,7 +83,7 @@ class Member
             return false;
         }
 
-        return DB::execute("UPDATE members set name = :name, role_id = :role_id WHERE id = :id", ['id' => $this->id, 'name' => $this->name, 'role_id' => $this->role_id]);
+        return DB::execute("UPDATE members set name = :name, role_id = :role_id WHERE id = :id", ['id' => $this->id, 'name' => $this->name, 'role_id' => $this->role_id, 'status_id' => $this->status_id]);
     }
 
     public function delete(): bool
