@@ -9,4 +9,7 @@
     <p>
         <a href="?controller=moderatorslist&task=index">Liste des Modérateur</a>
     </p>
+    <p>
+        <a href="?controller=addteam&task=index">Crée une équipe</a>
+    </p>
 </div>

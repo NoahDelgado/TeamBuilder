@@ -1,16 +1,13 @@
 <?php
 
-namespace Teambuilder\model;
-//TODO: placer le render dans la view passer en abstract controller
-class Render
+namespace Teambuilder\controller;
+
+use Teambuilder\model\Member;
+use Teambuilder\model\Team;
+use Teambuilder\model\Render;
+
+class AbstractController
 {
-    /**
-     * Permet de générer le rendu des pages
-     *
-     * @param string $path
-     * @param array $variables
-     * @return void
-     */
     public static function render(string $path, array $variables = [])
     {
         // Extrait les variables du tableau
@@ -24,12 +21,5 @@ class Render
         $pageContent = ob_get_clean();
 
         require('view/LayoutPage.php');
-    }
-    public static function redirect($path)
-    {
-
-        header('Location: /?controller=' . $path);
-
-        exit();
     }
 }

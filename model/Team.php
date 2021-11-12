@@ -18,7 +18,7 @@ class Team
     public function create(): bool
     {
         $check = DB::selectOne("SELECT * FROM teams WHERE NAME = :name", ['name' => $this->name]);
-
+        //TODO : Modifier avec un try catch
         if (!empty($check)) {
             return false;
         }
